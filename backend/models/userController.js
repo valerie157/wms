@@ -21,15 +21,13 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ error: "Email already exists" });
     }
 
-    // Encrypt password before saving it to the DB
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+   
 
     // Create a new user
     const user = await User.create({
       name,
       email,
-      password: hashedPassword,
+     
     });
 
     // Retrieve information of that user
